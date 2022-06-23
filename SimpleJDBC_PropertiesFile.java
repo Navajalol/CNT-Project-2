@@ -16,7 +16,7 @@ public class SimpleJDBC_PropertiesFile {
     MysqlDataSource dataSource = null;
     //read a properties file
     try {
-    	filein = new FileInputStream("db.properties");
+    	filein = new FileInputStream("root.properties");
     	properties.load(filein);
     	dataSource = new MysqlDataSource();
     	dataSource.setURL(properties.getProperty("MYSQL_DB_URL"));

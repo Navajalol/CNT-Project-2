@@ -32,8 +32,8 @@ public class SimpleJDBC_PropertiesFile {
 	
     //establish a connection to the dataSource - the database
 	Connection connection = dataSource.getConnection();
-    System.out.println("Database connected");
-    DatabaseMetaData dbMetaData = connection.getMetaData();
+  System.out.println("Database connected");
+  DatabaseMetaData dbMetaData = connection.getMetaData();
 	System.out.println("JDBC Driver name " + dbMetaData.getDriverName() );
 	System.out.println("JDBC Driver version " + dbMetaData.getDriverVersion());
 	System.out.println("Driver Major version " +dbMetaData.getDriverMajorVersion());
@@ -44,13 +44,13 @@ public class SimpleJDBC_PropertiesFile {
 	Statement statement = connection.createStatement();
 	
     // Execute a statement
-    ResultSet resultSet = statement.executeQuery ("select bikename,cost,mileage from bikes");
+    ResultSet resultSet = statement.executeQuery ("select bikename,country_of_origin,cost from bikes");
 
     // Iterate through the result set and print the returned results
     System.out.println("Results of the Query: . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\n");
     while (resultSet.next())
       System.out.println(resultSet.getString("bikename") + "         \t" +
-        resultSet.getString("cost") + "         \t" + resultSet.getString("mileage"));
+        resultSet.getString("country_of_origin") + "         \t" + resultSet.getString("cost"));
 		//the following print statement works exactly the same  
       //System.out.println(resultSet.getString(1) + "         \t" +
       //  resultSet.getString(2) + "         \t" + resultSet.getString(3));

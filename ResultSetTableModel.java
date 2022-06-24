@@ -32,7 +32,7 @@ public class ResultSetTableModel extends AbstractTableModel
    
    // constructor initializes resultSet and obtains its meta data object;
    // determines number of rows
-   public ResultSetTableModel( Connection incomiConnection, String query) 
+   public ResultSetTableModel( String query) 
       throws SQLException, ClassNotFoundException
    {         
 	   Properties properties = new Properties();

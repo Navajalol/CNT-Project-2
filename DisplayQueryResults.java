@@ -24,6 +24,7 @@ public class DisplayQueryResults extends JFrame
    
    private ResultSetTableModel tableModel;
    private JTextArea queryArea;
+   private JButton dataButton; 
    
    // create ResultSetTableModel and GUI
    public DisplayQueryResults() 
@@ -39,6 +40,7 @@ public class DisplayQueryResults extends JFrame
          // set up JTextArea in which user types queries
 		//	queryArea = new JTextArea( 3, 100);
          queryArea = new JTextArea( DEFAULT_QUERY, 3, 100 );
+         queryArea.setBounds(100,100,600,420); 
          queryArea.setWrapStyleWord( true );
          queryArea.setLineWrap( true );
          
@@ -52,22 +54,30 @@ public class DisplayQueryResults extends JFrame
          submitButton.setForeground(Color.YELLOW);
          submitButton.setBorderPainted(false);
          submitButton.setOpaque(true);
- 
+         submitButton.setBounds(300,300,100,100);
+
+
+         dataButton = new JButton("Connect to Database");
+         dataButton.setBackground(Color.BLUE);
+         dataButton.setForeground(Color.YELLOW);
+         dataButton.setBorderPainted(false);
+         dataButton.setOpaque(true);
+         //dataButton.setBounds();
          
          // create Box to manage placement of queryArea and 
          // submitButton in GUI
          Box box = Box.createHorizontalBox();
          box.add( scrollPane );
          box.add( submitButton );
+         box.add(dataButton); 
 
          // create JTable delegate for tableModel 
          JTable resultTable = new JTable( tableModel );
          resultTable.setGridColor(Color.BLACK);
          
          // place GUI components on content pane
-         add( box, BorderLayout.NORTH );
+         add( box, BorderLayout.NORTH);
          add( new JScrollPane( resultTable ), BorderLayout.CENTER );
-
          // create event listener for submitButton
          submitButton.addActionListener( 
          
@@ -110,7 +120,7 @@ public class DisplayQueryResults extends JFrame
             }  // end ActionListener inner class          
          ); // end call to addActionListener
 
-         setSize( 600, 300 ); // set window size
+         setSize( 1000, 500 ); // set window size
          setVisible( true ); // display window  
       } // end try
       catch ( ClassNotFoundException classNotFound ) 

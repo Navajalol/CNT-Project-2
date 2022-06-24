@@ -20,6 +20,7 @@ public class DisplayQueryResults extends JFrame
 {
    // default query retrieves all data from bikes table
    static final String DEFAULT_QUERY = "SELECT * FROM bikes";
+   private String[] propertyItems = {"root.properties", "client.properties", "db3.properties", "db4.properties"};
    
    private ResultSetTableModel tableModel;
    private JTextArea queryArea;

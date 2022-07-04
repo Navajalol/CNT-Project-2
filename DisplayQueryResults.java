@@ -39,7 +39,7 @@ public class DisplayQueryResults extends JPanel
 {
    // default query retrieves all data from bikes table
    static final String DEFAULT_QUERY = "SELECT * FROM bikes";
-   private String[] propertyItems = {"root.properties", "client.properties"};
+   private String propertyItems[] = {"root.properties", "client.properties"};
    private String[] UrlItems = {"jdbc:mysql://localhost:3306/project2?useTimezone=true&serverTimezone=UTC",
                                  "jdbc:mysql://localhost:3306/project2?useTimezone=true&serverTimezone=UTC"};
    private ResultSetTableModel tableModel;
@@ -84,13 +84,14 @@ public class DisplayQueryResults extends JPanel
          UserLabel.setOpaque(true);
          UserLabel.setBackground(Color.LIGHT_GRAY);
          UserLabel.setForeground(Color.BLACK); 
+
          passwordLabel = new JLabel ("Password"); 
          passwordLabel.setOpaque(true);
          passwordLabel.setBackground(Color.LIGHT_GRAY);
          passwordLabel.setForeground(Color.BLACK);
 
          textQuery = new JTextArea(5, 5);
-         propertiesCombo = new JComboBox<>(propertyItems);
+         propertiesCombo = new JComboBox(propertyItems);
 
          userText = new JTextField("", 10); 
          passwordText = new JPasswordField("", 10);
@@ -102,6 +103,7 @@ public class DisplayQueryResults extends JPanel
 
          WindowLabel = new JLabel(); 
          WindowLabel.setForeground(Color.BLUE);
+
          WindowLabel.setText("SQL Exceution Result Window");
 
          resultTable = new JTable(); 
@@ -169,7 +171,11 @@ public class DisplayQueryResults extends JPanel
          add (passwordLabel);
          add (StatusLabel); 
          add (WindowLabel); 
+         add (userText);
+         add (passwordText);
          add (square); 
+         add (propertiesCombo);
+         //add(textQuery);
 
          //Window size and layout
       

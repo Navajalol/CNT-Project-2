@@ -27,6 +27,7 @@ public class ResultSetTableModel extends AbstractTableModel
    private ResultSetMetaData metaData;
    private int numberOfRows;
    private String checkQuery; 
+   private String propertyItems[] = {"root.properties", "client.properties"};
    // keep track of database connection status
    private boolean connectedToDatabase = false;
    
@@ -40,14 +41,14 @@ public class ResultSetTableModel extends AbstractTableModel
 	   MysqlDataSource dataSource = null;
        //read properties file
 	   try {
-	    	filein = new FileInputStream("root.properties");
-	    	properties.load(filein);
+	    //	filein = new FileInputStream("client.properties");
+	    	//properties.load(filein);
 	    	dataSource = new MysqlDataSource();
-	    	dataSource.setURL(properties.getProperty("MYSQL_DB_URL"));
-	    	dataSource.setUser(properties.getProperty("MYSQL_DB_USERNAME"));
-	    	dataSource.setPassword(properties.getProperty("MYSQL_DB_PASSWORD")); 	
+	    	//dataSource.setURL(properties.getProperty("MYSQL_DB_URL"));
+	    	//dataSource.setUser(properties.getProperty("MYSQL_DB_USERNAME"));
+	    	//dataSource.setPassword(properties.getProperty("MYSQL_DB_PASSWORD")); 	
 	    
-            // connect to database bikes and query database
+            
   	        // establish connection to database
    	        Connection connection = dataSource.getConnection();
 	
@@ -68,9 +69,9 @@ public class ResultSetTableModel extends AbstractTableModel
          sqlException.printStackTrace();
          System.exit( 1 );
       } // end catch
-      catch (IOException e) {
-   	     e.printStackTrace();
-      }  
+     // catch (IOException e) {
+   	 //    e.printStackTrace();
+      //}  
    } // end constructor ResultSetTableModel
 
    // get class that represents column type

@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import javax.swing.table.AbstractTableModel;
 import java.util.Properties;
 import javax.sql.DataSource;
+
+import com.mysql.cj.Query;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 
@@ -43,21 +45,27 @@ public class ResultSetTableModel extends AbstractTableModel
 	   try {
 	    //	filein = new FileInputStream("client.properties");
 	    	//properties.load(filein);
-	    	dataSource = new MysqlDataSource();
+	    	//dataSource = new MysqlDataSource();
 	    	//dataSource.setURL(properties.getProperty("MYSQL_DB_URL"));
 	    	//dataSource.setUser(properties.getProperty("MYSQL_DB_USERNAME"));
 	    	//dataSource.setPassword(properties.getProperty("MYSQL_DB_PASSWORD")); 	
 	    
             
   	        // establish connection to database
-   	        Connection connection = dataSource.getConnection();
+   	       // Connection connection = dataSource.getConnection();
 	
             // create Statement to query database
-            statement = connection.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
+            statement = connect.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
 
             // update database connection status
             connectedToDatabase = true;
+            if(query.contains("SELECT")){
+               setQuery( query );
+            }
 
+            if(query.contains("UPDATE")){
+               setUpdate(query); 
+         }
             // set query and execute it
             setQuery( query );
 		

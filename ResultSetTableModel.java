@@ -1,6 +1,7 @@
 // A TableModel that supplies ResultSet data to a JTable.
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.management.OperatingSystemMXBean;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.DriverManager;
@@ -182,6 +183,27 @@ public class ResultSetTableModel extends AbstractTableModel
    public void setQuery( String query ) 
       throws SQLException, IllegalStateException 
    {
+      Connection opLog; 
+      Properties properties = new Properties();
+      FileInputStream filein = null; 
+      MysqlDataSource operationLog = null; 
+
+      try{
+         String setQuery=("Set operationsCount set num_Updates = num_updates +1"); 
+         filein = new FileInputStream("operationslog.properties");
+         properties.load(filein);
+         operationLog = new MysqlDataSource();
+         operationLog.setUrl(properties.getProperty("MYSQL_DB_URL"));
+         operationLog.setUser(properties.getProperty("MYSQL_DB_USERNAME"));
+         operationLog.setPassword(properties.getProperty("MYSQL_DB_PASSWORD"));
+         opLog = operationLog.getConnection(); 
+         Statement opLogStatement = opLog.createStatement(); 
+         int count = opLogStatement.executeUpdate(setQuery);
+         opLog.close(); 
+      }
+      catch (IOException e) {
+             e.printStackTrace();
+        }  
       // ensure database connection is available
       if ( !connectedToDatabase ) 
          throw new IllegalStateException( "Not Connected to Database" );

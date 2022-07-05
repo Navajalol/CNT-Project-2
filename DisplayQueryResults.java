@@ -111,11 +111,13 @@ public class DisplayQueryResults extends JPanel
          setPreferredSize(new DimensionUIResource(905, 520));
          setLayout(null);
          final Box square = Box.createHorizontalBox();
-         square.add(new JScrollPane(textQuery)); 
+         square.add(new JScrollPane(resultTable)); 
          Box sqlSquare = Box.createHorizontalBox();
          sqlSquare.add(new JScrollPane(textQuery));
+         sqlSquare.setOpaque(true);
          resultTable.setEnabled(false);
          resultTable.setGridColor(Color.BLACK);
+         
       
 
          dataButton.setBounds(20,150,165,25); 
@@ -148,11 +150,11 @@ public class DisplayQueryResults extends JPanel
          UserLabel.setBounds(10,68,125,30);
          passwordLabel.setBounds(10,106,125,30);
 
-         StatusLabel.setBounds(10,106,125,30);
+         StatusLabel.setBounds(20,187,850,25);
          WindowLabel.setBounds(45,231,220,25); 
 
-         square.setBounds(45, 2231, 220, 5);
-         queryLabel.setBounds(45,254, 841, 220);
+         square.setBounds(45, 224, 841, 220);
+         queryLabel.setBounds(450,0, 215, 25);
 
          sqlSquare.setBounds(450, 22, 438, 125);
          propertiesCombo.setBounds(135, 30, 290, 30); 
@@ -263,6 +265,7 @@ public class DisplayQueryResults extends JPanel
                   dataSource.setUser(properties.getProperty("MYSQL_DB_USERNAME"));
                   dataSource.setPassword(properties.getProperty("MYSQL_DB_PASSWORD"));
                   connect = dataSource.getConnection();
+                  StatusLabel.setText("Connected to " + (String)properties.getProperty("MYSQL_DB_URL"));
 
 
                }
@@ -279,9 +282,9 @@ public class DisplayQueryResults extends JPanel
             JOptionPane.showMessageDialog(null, e.getMessage(), "databse error", JOptionPane.ERROR_MESSAGE);
 
          }
-            catch(SQLException e ){
-               JOptionPane.showMessageDialog(null, e.getMessage(), "databse error", JOptionPane.ERROR_MESSAGE); 
-            }
+         catch(SQLException e ){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "databse error", JOptionPane.ERROR_MESSAGE); 
+         }
          }
         });
 

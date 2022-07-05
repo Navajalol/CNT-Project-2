@@ -55,7 +55,7 @@ public class DisplayQueryResults extends JPanel
    private JTable resultTable; 
    private JLabel queryLabel, dbInfoLabel, jbdcLabel, UrlLabel, UserLabel, passwordLabel; 
    private JTextField userText;
-   private Font font;  
+   
    
    // create ResultSetTableModel and GUI
    /**
